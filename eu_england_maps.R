@@ -20,10 +20,10 @@ df <- df %>% rename(lad15cd = Area_Code)
 LA.sf <- left_join(LA.sf, df, by = "lad15cd")
 LA.sf <- LA.sf %>% select(-lad15nmw)
 
-# Filter out Scotland and Wales, leaving only England
+# Filter out Scotland and Wales
 LAE.sf <- LA.sf  %>%
-  filter(Region != "Scotland") %>%
-  filter(Region != "Wales")
+  filter(Region != "Scotland",
+         Region != "Wales")
 
 # Project to British National Grid
 LAE.sf <- st_transform(LAE.sf, 27700)
